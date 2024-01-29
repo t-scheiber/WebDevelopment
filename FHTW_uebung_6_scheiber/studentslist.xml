@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <studentlist>
 	<student>
@@ -26,4 +27,34 @@
 			<lv>WEB9</lv>
 		</lvs>
 	</student>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<studentlist>
+	<student>
+		<matnr>123456789</matnr>
+		<vorname>Thomas</vorname>
+		<nachname>Scheiber</nachname>
+		<studiengang>BSA</studiengang>
+		<semester>2</semester>
+		<lvs>
+			<lv>WEB1</lv>
+			<lv>WEB2</lv>
+			<lv>WEB3</lv>
+			<lv>WEB4</lv>
+		</lvs>
+	</student>
+	<student>
+		<matnr>987654321</matnr>
+		<vorname>Max</vorname>
+		<nachname>Muster</nachname>
+		<studiengang>BCI</studiengang>
+		<semester>4</semester>
+		<lvs>
+			<lv>WEB6</lv>
+			<lv>WEB7</lv>
+			<lv>WEB8</lv>
+			<lv>WEB9</lv>
+		</lvs>
+	</student>
+>>>>>>> 7e5f181810d8f4233ba70d54f684e8d9394f4e31
 </studentlist>
