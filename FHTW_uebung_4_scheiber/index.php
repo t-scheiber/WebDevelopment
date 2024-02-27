@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="de">
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<title>&copy; Thomas Scheiber</title>
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-		
-	</head>
-	<body>
-		<form action="auswertung.php" method="get">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+	<link rel="icon" type="image/png" href="./favicon.png">
+	<title>Patientenverwaltung &copy; Thomas Scheiber</title>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+	<form action="auswertung.php" method="get">
 		<h1>Patientenverwaltung</h1>
 		<p>Willkommen im BSA-KIS (BSA Krankenhausinformationssystem)!</p>
 		<h2>Neuen Patienten anlegen</h2>
@@ -45,9 +49,10 @@
 				</tr>
 				<tr>
 					<td><label for="m">Geschlecht:</label></td>
-					<td><input type="radio" name="geschlecht" id="m" value="m" required="required"> m 
-					  <input type="radio" name="geschlecht" id="w" value="w" required="required"> w 
-					  <input type="radio" name="geschlecht" id="ka" value="ka" required="required"> keine Angabe</td>
+					<td><input type="radio" name="geschlecht" id="m" value="m" required="required"> m
+						<input type="radio" name="geschlecht" id="w" value="w" required="required"> w
+						<input type="radio" name="geschlecht" id="ka" value="ka" required="required"> keine Angabe
+					</td>
 				</tr>
 				<tr>
 					<td><label for="diabd">Diastolischer Blutdruck:</label></td>
@@ -72,5 +77,6 @@
 			</table>
 		</fieldset>
 	</form>
-	</body>
+</body>
+
 </html>
