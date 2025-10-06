@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<studentlist>
+	<student>
+		<matnr>123456789</matnr>
+		<kuerzel>TS</kuerzel>
+		<vorname>Thomas</vorname>
+		<nachname>Scheiber</nachname>
+		<studiengang>BSA</studiengang>
+		<semester>2</semester>
+		<lvs>
+			<lv>WEB1</lv>
+			<lv>WEB2</lv>
+			<lv>WEB3</lv>
+			<lv>WEB4</lv>
+		</lvs>
+	</student>
+	<student>
+		<matnr>987654321</matnr>
+		<kuerzel>MM</kuerzel>
+		<vorname>Max</vorname>
+		<nachname>Muster</nachname>
+		<studiengang>BCI</studiengang>
+		<semester>4</semester>
+		<lvs>
+			<lv>WEB6</lv>
+			<lv>WEB7</lv>
+			<lv>WEB8</lv>
+			<lv>WEB9</lv>
+		</lvs>
+	</student>
+	<student>
+		<matnr>555444333</matnr>
+		<kuerzel>AM</kuerzel>
+		<vorname>Anna</vorname>
+		<nachname>Müller</nachname>
+		<studiengang>BSA</studiengang>
+		<semester>3</semester>
+		<lvs>
+			<lv>WEB5</lv>
+			<lv>DATABASE1</lv>
+			<lv>PROGRAMMING2</lv>
+		</lvs>
+	</student>
+</studentlist>

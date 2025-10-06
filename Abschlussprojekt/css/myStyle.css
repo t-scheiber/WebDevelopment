@@ -1,0 +1,31 @@
+header
+{
+	text-align: center;
+}
+th, td
+{
+	padding: 10px;
+}
+h1
+{
+	margin: 10px 0px 20px 0px;
+	text-align: center;
+}
+.liste
+{
+	margin: 10px 20px 0px 20px;
+}
+td img
+{
+	max-height: 100px;
+	max-width: 200px;
+}
+footer
+{
+	background-image: url('../pics/footer.png');
+	height: 196px;
+}
+#submit
+{
+	margin-left: 5px;
+}

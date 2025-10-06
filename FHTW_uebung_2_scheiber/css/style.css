@@ -1,0 +1,101 @@
+body
+{
+	padding-top: 50px;
+	position: relative;
+	
+}
+header
+{
+   background-image: url("../img/smart-home-header.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   height: 800px;
+   background-attachment: fixed;
+}
+header h1
+{
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 5px;
+	padding: 10px;
+}
+header p
+{
+	font-size: 1.5em;
+	color: #FFFFFF;
+}
+#welcome
+{
+	height: 650px;
+	padding: 20px 0px 10px 0px;
+	border-top: 10px solid #AAAAAA;
+	text-align: center;
+}
+#welcome h4
+{
+	font-weight: bold;
+	margin: 15px 0px 15px 0px;
+}
+#welcome p
+{
+	font-size: 1.2em;
+	font-style: italic;
+	margin-top: 10px;
+	text-align: center;
+}
+#schlafzimmer
+{
+	background-image: url("../img/schlafzimmer.jpg");
+	background-position: center;
+}
+#schlafzimmer, #esszimmer, #aussenbereich
+{
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	padding: 50px 0px 50px 0px;
+	height: 600px;
+ 	overflow: auto;
+ }
+#esszimmer
+{
+	background-image: url("../img/esszimmer.jpg");
+	background-position: top;
+
+}
+#aussenbereich
+{
+	background-image: url("../img/aussen.jpg");
+	background-position: center;
+	
+}
+#schlafzimmer h2, #esszimmer h2, #aussenbereich h2
+{
+	background-color: rgba(20,20,20,0.7);
+	color: #FFFFFF;
+	padding: 10px;
+	border-radius: 5px;
+	text-align: left;
+}
+#schlafzimmer h3, #esszimmer h3, #aussenbereich h3
+{
+	color: #FFF;
+	background-color: rgba(20,20,20,0.7);
+}
+#schlafzimmer p, #esszimmer p, #aussenbereich p
+{
+	background-color: rgba(255,255,255,0.7);
+	text-align: center;
+	margin-top: 50px;
+	border-radius: 5px;
+}
+#wohnzimmer, #kueche
+{
+	padding: 50px 0px 50px 0px;
+	border-top: 10px solid #AAAAAA;
+	height: 600px;
+ 	overflow: auto;
+}
+#galerie
+{
+	margin: 0px auto 0px auto;
+}
