@@ -1,0 +1,33 @@
+<style>
+nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px;
+}
+section {
+	float:left;
+    width:640px;
+    float:left;
+    padding:10px;
+}
+aside {
+  float: left;
+  margin: 0 1.5%;
+  width: 30%;
+}
+footer {
+    background-color:orange;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
+} 
+header {
+    background-color:orange;
+    color:white;
+    text-align:center;
+    padding:5px;
+}

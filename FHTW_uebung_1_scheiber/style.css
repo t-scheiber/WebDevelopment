@@ -1,0 +1,321 @@
+/* Unified CSS for FHTW Übung 1 - Thomas Scheiber */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	min-height: 100vh;
+	color: #333;
+	padding: 20px;
+}
+
+/* Header Styles */
+header {
+	background: rgba(255, 255, 255, 0.95);
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+
+header h1 {
+	color: #667eea;
+	font-size: 2.5em;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+header p {
+	color: #555;
+	font-size: 1.1em;
+	margin-top: 10px;
+}
+
+/* Navigation */
+nav {
+	background: rgba(255, 255, 255, 0.9);
+	padding: 15px;
+	margin-bottom: 20px;
+	border-radius: 10px;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+	text-align: center;
+}
+
+nav a {
+	text-decoration: none;
+	color: #667eea;
+	padding: 10px 20px;
+	border-radius: 25px;
+	background: rgba(102, 126, 234, 0.1);
+	transition: all 0.3s ease;
+	display: inline-block;
+	margin: 5px;
+	font-weight: 600;
+}
+
+nav a:hover {
+	background: #667eea;
+	color: white;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Main Content */
+main {
+	background: rgba(255, 255, 255, 0.95);
+	padding: 30px;
+	border-radius: 15px;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+/* Article Styles */
+article h1, article h2, article h3 {
+	color: #667eea;
+	margin-top: 20px;
+	margin-bottom: 15px;
+}
+
+article h1 {
+	font-size: 2.5em;
+	border-bottom: 3px solid #667eea;
+	padding-bottom: 10px;
+}
+
+article h2 {
+	font-size: 2em;
+}
+
+article h3 {
+	font-size: 1.5em;
+}
+
+article p {
+	line-height: 1.8;
+	margin-bottom: 15px;
+	text-align: justify;
+}
+
+article img {
+	max-width: 100%;
+	height: auto;
+	margin: 20px 0;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+article a {
+	color: #667eea;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+article a:hover {
+	text-decoration: underline;
+}
+
+/* Table Styles */
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px 0;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+th {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	padding: 15px;
+	text-align: left;
+	font-weight: 600;
+}
+
+td {
+	padding: 12px 15px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+tr:nth-child(even) {
+	background-color: #f5f5f5;
+}
+
+tr:hover {
+	background-color: #e8eaf6;
+}
+
+/* Form Styles */
+form {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+fieldset {
+	border: 2px solid #667eea;
+	border-radius: 10px;
+	padding: 25px;
+	margin: 20px 0;
+	background: #f9f9f9;
+}
+
+legend {
+	background: #667eea;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-weight: 600;
+	font-size: 1.1em;
+}
+
+label {
+	display: block;
+	margin-top: 15px;
+	margin-bottom: 5px;
+	color: #555;
+	font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+textarea {
+	width: 100%;
+	padding: 10px;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+	font-size: 1em;
+	transition: border-color 0.3s ease;
+	font-family: inherit;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+	outline: none;
+	border-color: #667eea;
+	box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+}
+
+input[type="radio"] {
+	margin-right: 5px;
+	margin-left: 10px;
+}
+
+textarea {
+	min-height: 100px;
+	resize: vertical;
+}
+
+input[type="submit"],
+input[type="reset"],
+button {
+	background: #667eea;
+	color: white;
+	padding: 12px 30px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 1em;
+	font-weight: 600;
+	margin: 10px 5px;
+	transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover,
+button:hover {
+	background: #764ba2;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+input[type="reset"] {
+	background: #888;
+}
+
+input[type="reset"]:hover {
+	background: #666;
+}
+
+/* Index Grid */
+.index-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 20px;
+	padding: 20px 0;
+}
+
+.index-card {
+	background: rgba(255, 255, 255, 0.95);
+	padding: 30px;
+	border-radius: 15px;
+	text-align: center;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+	transition: all 0.3s ease;
+}
+
+.index-card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.index-card a {
+	color: #667eea;
+	text-decoration: none;
+	font-size: 1.5em;
+	font-weight: 600;
+	display: block;
+}
+
+.index-card a:hover {
+	color: #764ba2;
+}
+
+/* Footer */
+footer {
+	background: rgba(255, 255, 255, 0.95);
+	padding: 20px;
+	text-align: center;
+	margin-top: 20px;
+	border-radius: 10px;
+	box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+	color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	body {
+		padding: 10px;
+	}
+	
+	header h1 {
+		font-size: 1.8em;
+	}
+	
+	main {
+		padding: 20px;
+	}
+	
+	nav a {
+		display: block;
+		margin: 5px 0;
+	}
+	
+	.index-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Smooth scrolling */
+html {
+	scroll-behavior: smooth;
+}

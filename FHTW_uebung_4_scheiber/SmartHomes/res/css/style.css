@@ -1,0 +1,144 @@
+#home, #schlafzimmer, #wohnzimmer, #esszimmer, #kueche, #aussenbereich, #impressum
+{
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	padding: 50px 0px 50px 0px;
+}
+#home, #schlafzimmer, #wohnzimmer, #esszimmer, #kueche, #aussenbereich
+{
+	height: 650px;
+}
+#schlafzimmer
+{
+	background-image: url("../img/schlafzimmer.jpg");
+	background-position: bottom;
+}
+#esszimmer
+{
+	background-image: url("../img/esszimmer.jpg");
+	background-position: center;
+}
+#aussenbereich
+{
+	background-image: url("../img/aussen.jpg");
+	background-position: center;
+}
+#schlafzimmer h2, #esszimmer h2, #aussenbereich h2
+{
+	background-color: rgba(20,20,20,0.7);
+	color: #FFFFFF;
+	padding: 10px;
+	border-radius: 5px;
+	text-align: left;
+}
+#schlafzimmer h3, #esszimmer h3, #aussenbereich h3
+{
+	color: #FFF;
+	background-color: rgba(20,20,20,0.7);
+}
+#schlafzimmer p, #esszimmer p, #aussenbereich p
+{
+	background-color: rgba(255,255,255,0.7);
+	text-align: center;
+	margin-top: 50px;
+	border-radius: 5px;
+}
+#footer
+{
+	font-size: 12pt;
+	height: 200px;
+	padding-top: 20px;
+}
+.login
+{
+	text-align: center;
+	padding-right: 20px;
+}
+.logoutLink
+{
+	margin-left: 30px;
+}
+#footer a
+{
+	margin-left: 15px;
+	margin-right: 15px;
+}
+.fa:hover {
+	opacity: 0.7;
+}
+.fa {
+	padding: 20px;
+	font-size: 30px;
+	width: 50px;
+	text-align: center;
+	text-decoration: none;
+}
+.footerLink
+{
+	text-align: center;
+}
+.smLinks
+{
+	text-align: center;
+	padding-top: 10px;
+}
+#Facebook, #Twitter, #GooglePlus, #Linkedin, #Instagram, #Pinterest, #Snapchat, #Skype, #Android, #YouTube, #Vimeo, #Reddit
+{
+	padding: 10px 20px 10px 5px;
+	color: white;
+}
+#Facebook
+{
+	background: #3B5998;
+}
+
+#Twitter
+{
+	background: #55ACEE;
+}
+
+#GooglePlus
+{
+	background: #dd4b39;
+}
+#Linkedin
+{
+	background: #007bb5;
+}
+#Instagram
+{
+	background: #125688;
+}
+#Pinterest
+{
+	background: #cb2027;
+}
+#Snapchat
+{
+	background: #fffc00;
+}
+#snapchat-ghost
+{
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	
+}
+#Skype
+{
+	background: #00aff0;
+}
+#Android
+{
+	background: #a4c639;
+}
+#YouTube
+{
+	background: #bb0000;
+}
+#Vimeo
+{
+	background: #45bbff;
+}
+#Reddit
+{
+	background: #ff5700;
+}

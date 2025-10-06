@@ -1,0 +1,31 @@
+table
+{
+	margin: 20px auto 0px auto;
+	padding: 10px;
+}
+td, th
+{
+	padding: 5px;
+}
+th
+{
+	text-align: center;
+}
+h1
+{
+	font-size: 18pt;
+}
+form h1, form p, form h2
+{
+	text-align: center;
+}
+.marked
+{
+	background-color: rgba(155,23,23,0.8);
+}
+div
+{
+	width: 500px;
+	margin: 20px auto 0px auto;
+	text-align: center;
+}
