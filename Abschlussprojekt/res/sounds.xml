@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<sounds>
+    <sound>
+        <soundid>1</soundid>
+        <name>Alien Spaceship</name>
+        <details>Ufo or alien spacecraft ambience. sound either from inside the spacecraft, or outside as the craft is landing. - Uploaded: 5.04.18 - License: Attribution 3.0 - Recorded by Daniel Simion - File Size: 2.82 MB</details>
+        <soundfile>alien-spaceship_daniel_simion.mp3</soundfile>
+    </sound>
+    <sound>
+        <soundid>2</soundid>
+        <name>Harley Davidson</name>
+        <details>A harley davidson motorcycle idling and revving its engine. it then speeds away. - Uploaded: 5.03.18 - License: Attribution 3.0 - Recorded by Daniel Simion - File Size: 5.71 MB </details>
+        <soundfile>harley-davidson-daniel_simon.mp3</soundfile>
+    </sound>
+    <sound>
+        <soundid>3</soundid>
+        <name>Heavy Rain</name>
+        <details>Super heavy rainstorm and wind pouring down. - Uploaded: 5.09.18 - License: Attribution 3.0 - Recorded by Daniel Simion - File Size: 14.5 MB </details>
+        <soundfile>heavy-rain-daniel_simon.mp3</soundfile>
+    </sound>
+    <sound>
+        <soundid>5</soundid>
+        <name>Old Car</name>
+        <details>Old car engine starting up slowly and running. very old model t car. - Uploaded: 5.04.18 - License: Attribution 3.0 - Recorded by Daniel Simion - FileSize: 3.43 MB </details>
+        <soundfile>old-car-engine_daniel_simion.mp3</soundfile>
+    </sound>
+    <sound>
+        <soundid>5</soundid>
+        <name>Service Bell</name>
+        <details>Customer ringing service bell in need of help in a...</details>
+        <soundfile>service-bell_daniel_simion.mp3</soundfile>
+    </sound>
+</sounds>

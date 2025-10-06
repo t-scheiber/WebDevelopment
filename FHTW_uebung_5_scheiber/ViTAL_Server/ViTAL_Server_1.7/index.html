@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web-Interface ViTAL Server</title>
+
+<link type="text/css" href="base.css" rel="stylesheet" />
+
+<script language="javascript" type="text/javascript" src="vital.js"></script>
+
+</head>
+
+<body>
+	
+	<header>
+		<h1>ViTAL Server</h1>
+	</header>
+	<section>
+		<h2>REST-Service Info</h2>
+		Path Descriptions:<p>
+    	- /rest/items - returns all items as JSON-array<br>
+    	- /rest/items/vital_data - returns the vital_data item<br>
+    	- /rest/items/vital_data/history - returns the history of the vital_data item as JSON-array<br><br>
+    	
+    	e.g. open your browser and go to http://localhost:8080/rest/items
+	</section>
+	<section>
+		<h2>Test</h2>
+		<form>
+			Target: <br><input type="url" id="target" name="target" size=50 value="http://localhost:8080/rest/items/vital_data/add"><p>
+			ID: <br><input type="text" id="itemID" name="itemID" size=50 value="vital_data"><p>
+			Name: <br><input type="text" id="itemName" name="itemName" size=50 value="Vital Data"><p>
+			Diastolic Pressure [mm Hg]: <br><input type="number" id="diastolic" name="diastolic" value=80><p>
+			Systolic Pressure [mm Hg]: <br><input type="number" id="systolic" name="systolic" value=120><p>
+			Heart Rate [bpm]: <br><input type="number" id="heartRate" name="heartRate" value=60><p>
+			<input type="button" value="Post Vital Data" onclick="postData();"><p>
+		</form>
+	</section>		
+	<footer><h3>ViTAL Project</h3></footer>
+</body>
+</html>

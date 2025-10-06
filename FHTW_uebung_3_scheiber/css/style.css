@@ -1,0 +1,44 @@
+body
+{
+	padding: 5px;
+}
+iframe
+{
+	width: 100%;
+	overflow: hidden;
+}
+#aufgabe1 iframe
+{
+	height: 800px;
+}
+#aufgabe2 iframe
+{
+	height: 200px;
+}
+#aufgabe3 iframe
+{
+	height: 250px;
+}
+#aufgabe4 iframe
+{
+	height: 300px;
+}
+table
+{
+	text-align: center;
+	width: 255px;
+	margin: 10px;
+}
+th
+{
+	height: 50px;
+}
+td
+{
+	height: 50px;
+	width: 50px;
+}
+.odd
+{
+	background-color: #0A2DFF;
+}

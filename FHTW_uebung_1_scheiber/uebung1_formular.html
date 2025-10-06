@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Patientenverwaltung | Thomas Scheiber</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>📝 Patientenverwaltung</h1>
+		<p>BSA-KIS (BSA Krankenhausinformationssystem)</p>
+	</header>
+
+	<nav>
+		<a href="index.html">🏠 Zurück zur Übersicht</a>
+		<a href="uebung1_artikel.html">📰 Artikel</a>
+		<a href="uebung1_tabelle.html">📊 Tabelle</a>
+		<a href="uebung1_smarthome.html">🏠 Smart Home</a>
+	</nav>
+
+	<main>
+		<form action="mailto:sa19b025@technikum-wien.at" method="post">
+			<h2 style="text-align: center; color: #667eea; margin-bottom: 20px;">Neuen Patienten anlegen</h2>
+			
+			<fieldset>
+				<legend>Persönliche Daten</legend>
+				
+				<label for="vorname">Vorname: *</label>
+				<input type="text" name="vn" id="vorname" placeholder="Vorname eingeben" autofocus="autofocus" maxlength="40" required="required">
+				
+				<label for="nachname">Nachname: *</label>
+				<input type="text" name="nn" id="nachname" placeholder="Nachname eingeben" maxlength="40" required="required">
+				
+				<label for="email">E-Mail: *</label>
+				<input type="email" name="email" id="email" placeholder="beispiel@email.com" maxlength="40" required="required">
+				
+				<label for="svn">Sozialversicherungsnummer: *</label>
+				<input type="text" id="svn" name="svn" placeholder="SV-Nummer eingeben" maxlength="40" required="required">
+				
+				<label for="gebdat">Geburtsdatum: *</label>
+				<input type="date" name="gebdat" id="gebdat" required="required">
+				
+				<label>Geschlecht:</label>
+				<div style="margin: 10px 0;">
+					<input type="radio" name="geschlecht" id="m" value="m">
+					<label for="m" style="display: inline; margin-right: 15px;">Männlich</label>
+					
+					<input type="radio" name="geschlecht" id="w" value="w">
+					<label for="w" style="display: inline; margin-right: 15px;">Weiblich</label>
+					
+					<input type="radio" name="geschlecht" id="ka" value="ka" checked>
+					<label for="ka" style="display: inline;">Keine Angabe</label>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Medizinische Daten</legend>
+				
+				<label for="diabd">Diastolischer Blutdruck (mmHg):</label>
+				<input type="number" name="diabd" id="diabd" placeholder="z.B. 80" min="40" max="120">
+				
+				<label for="sysbd">Systolischer Blutdruck (mmHg):</label>
+				<input type="number" name="sysbd" id="sysbd" placeholder="z.B. 120" min="80" max="200">
+				
+				<label for="puls">Puls (Schläge/Minute):</label>
+				<input type="number" name="puls" id="puls" placeholder="z.B. 70" min="40" max="180">
+				
+				<label for="anmerkungen">Anmerkungen:</label>
+				<textarea name="anmerkungen" id="anmerkungen" placeholder="Zusätzliche medizinische Informationen oder Anmerkungen..."></textarea>
+			</fieldset>
+
+			<div style="text-align: center; margin-top: 20px;">
+				<input type="reset" name="abbrechen" id="abbrechen" value="Zurücksetzen">
+				<input type="submit" name="Senden" id="senden" value="Patient anlegen">
+			</div>
+			
+			<p style="text-align: center; color: #888; margin-top: 20px; font-size: 0.9em;">
+				* Pflichtfelder
+			</p>
+		</form>
+	</main>
+
+	<footer>
+		<p>&copy; 2017 Thomas Scheiber - Web Development Übung 1</p>
+	</footer>
+</body>
+</html>
