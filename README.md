@@ -41,7 +41,7 @@ A smart home app with a session-based login and a room list, plus a bundled devi
 - The login in `inc/header.inc.php` compares fixed values. If "stay logged in" is checked, it sets a `user` cookie that expires after 600 seconds. `logout.php` clears the cookie.
 - `sites/neuerRaum.php` is a form that adds a room through GET parameters. `sites/zimmerliste.php` keeps the rooms in `$_SESSION['zimmerliste']` and prints them as a table.
 - `RESTServices/getpatientdata.php` prints one fixed record as JSON with `json_encode()`. `sites/restapi.php` is empty.
-- `ViTAL_Server/ViTAL_Server_1.7/` contains a copy of the ViTAL server (a Java jar with start scripts and `values.txt`) and a page, `index.html`, with `vital.js`. The page posts a JSON record to `http://localhost:8080` with XMLHttpRequest.
+- `ViTAL_Server/ViTAL_Server_1.7/` contains a copy of the ViTAL server (a Java jar with start scripts and `values.txt`) and a page, `index.html`, with `vital.js`. The page posts a JSON record to the server on port 8080 of localhost with XMLHttpRequest.
 
 ### FHTW_uebung_6_scheiber (exercise 6)
 
