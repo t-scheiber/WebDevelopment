@@ -17,7 +17,10 @@
 	</head>
 	<body>
 		<?php
-				phpinfo();
+				// phpinfo() is turned off on the public server because it lists paths, modules and server settings.
+				// Call phpinfo() on a local PHP server to see the full output.
+				echo "<p>PHP-Version: ", htmlspecialchars(phpversion()), "</p>";
+				echo "<p>phpinfo() ist auf dem öffentlichen Server deaktiviert. Lokal zeigt <code>phpinfo();</code> die vollständige Ausgabe.</p>";
 			?>
 	</body>
 </html>

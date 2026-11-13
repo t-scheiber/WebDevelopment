@@ -8,11 +8,14 @@ function postData() {
 
 function onReadyStateChange() {
 	if(this.readyState == 4){
+		var status = document.getElementById("status");
 		if(this.status == 200){
 			console.log(this.responseText);
+			if (status) status.textContent = "Gesendet.";
 		}
 		else{
 			console.log(this.statusText);
+			if (status) status.textContent = "Der ViTAL Server ist nicht erreichbar. Er muss lokal auf Port 8080 laufen.";
 		}
 	}
 }

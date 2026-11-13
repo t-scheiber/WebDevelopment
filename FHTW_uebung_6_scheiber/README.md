@@ -83,7 +83,7 @@ The preset buttons in `index.php` fill the URL field with Heise (Atom), ORF (RSS
 - **XSS Protection** - Output escaped with `htmlspecialchars()`
 - **Error Handling** - Graceful failure modes
 - **Input Validation** - URL verification
-- **Certificate checks off** - `feed_loader.php` turns off TLS certificate verification for cURL and for the stream fallback. It fetches any URL the user submits.
+- **Public URLs only** - `feed_loader.php` fetches only http and https URLs whose host resolves to public IPv4 addresses. It connects to the checked address, checks every redirect target again, verifies TLS certificates and stops after 5 MB.
 
 ## 💡 Why This Project Matters
 

@@ -62,7 +62,7 @@ if (!isset($_POST['submit'])) {
 				<td colspan='2'><input type='reset' id='reset' value='Reset'><input type='submit' name='submit' value='Login'></td>
 			</tr>");
 
-			if (!isset($_POST['registered']))
+			if (empty($registrierungErfolgreich))
 			{
 				echo ("
 					<tr>
@@ -74,7 +74,7 @@ if (!isset($_POST['submit'])) {
 		</table>
 		<div class='schrifterfolg'>
 	");
-			if (isset($_POST['registered'])) {
+			if (!empty($registrierungErfolgreich)) {
 				echo "Erfolgreich registiert!";
 			}
 
@@ -88,30 +88,30 @@ else
 	if($db === null) {
 		echo "<p style='color: red;'>Datenbankverbindung nicht verfügbar. Bitte kontaktieren Sie den Administrator.</p>";
 	} else {
-		$eingabefeld1=$_POST['user'];
-		$eingabefeld2=$_POST['pwd'];
+		$eingabefeld1 = is_string($_POST['user'] ?? null) ? $_POST['user'] : '';
+		$eingabefeld2 = is_string($_POST['pwd'] ?? null) ? $_POST['pwd'] : '';
 
-		$gehasht=md5($eingabefeld2);
+		// Prepared statement: the email address is sent as a parameter, not joined into the SQL text.
+		$abfrage = mysqli_prepare($db, "SELECT sid, vorname, nachname, emailadresse, passwort FROM studentenliste WHERE emailadresse = ?");
+		$ergebnis = false;
+		if ($abfrage) {
+			mysqli_stmt_bind_param($abfrage, 's', $eingabefeld1);
+			mysqli_stmt_execute($abfrage);
+			$ergebnis = mysqli_stmt_get_result($abfrage);
+		}
 
-		$sql = "SELECT * FROM studentenliste";
-		$sql1 = "SELECT emailadresse FROM studentenliste WHERE emailadresse = " . $eingabefeld1;
-
-		$ergebnis=mysqli_query($db, $sql);
-		$usernameselect=mysqli_query($db, $sql1);
-
-	//$result=mysqli_fetch_array($ergebnis);
 	echo "<p>";
-	while($row = mysqli_fetch_array($ergebnis)){
+	while($ergebnis && $row = mysqli_fetch_array($ergebnis)){
 
-		if ($row['emailadresse']==$eingabefeld1 && $row['passwort']==$gehasht) {
-			echo 'Willkommen, ' . $row['vorname'] . ' ' . $row['nachname'] . '!<br>';
-			echo 'Ihre ID lautet ' . $row['sid'] . ' und ihre E-Mail-Adresse ist: ' . $row['emailadresse'] . '<br>';
+		if (password_verify($eingabefeld2, $row['passwort'])) {
+			echo 'Willkommen, ' . htmlspecialchars($row['vorname']) . ' ' . htmlspecialchars($row['nachname']) . '!<br>';
+			echo 'Ihre ID lautet ' . (int)$row['sid'] . ' und ihre E-Mail-Adresse ist: ' . htmlspecialchars($row['emailadresse']) . '<br>';
 			$eingeloggt = 1;
 		}
-		else{
-			
-		}
-	}	
+	}
+	if ($abfrage) {
+		mysqli_stmt_close($abfrage);
+	}
 		if(isset($eingeloggt))
 		{
 		echo "Sie haben sich erfolgreich angemeldet.";

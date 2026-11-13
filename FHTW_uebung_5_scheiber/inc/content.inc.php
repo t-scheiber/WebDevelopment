@@ -32,7 +32,7 @@
 				include 'sites/neuerRaum.php';
 				break;
 				case 'RESTAPI':
-				include 'RESTServices/getPatientData.php';
+				include 'RESTServices/getpatientdata.php';
 				break;
 			default:
 				include 'sites/home.php';
