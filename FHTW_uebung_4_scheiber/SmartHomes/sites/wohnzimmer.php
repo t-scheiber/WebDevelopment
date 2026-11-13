@@ -2,8 +2,8 @@
 <?php 
 	if(isset($_GET['un']) && isset($_GET['pw']))
 	{
-		$username=$_GET['un'];
-		$passwort=$_GET['pw'];
+		$username=is_string($_GET['un']) ? urlencode($_GET['un']) : ''; // encoded for use in links
+		$passwort=is_string($_GET['pw']) ? urlencode($_GET['pw']) : '';
 	}
 ?>
 <div class="container" id="wohnzimmer">

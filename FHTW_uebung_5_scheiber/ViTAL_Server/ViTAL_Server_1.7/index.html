@@ -15,6 +15,12 @@
 		<h1>ViTAL Server</h1>
 	</header>
 	<section>
+		<h2>Hinweis</h2>
+		<p>Der ViTAL Server ist ein Java-Programm (vital_server.jar) und läuft auf diesem Webhosting nicht.
+		Das Formular sendet an http://localhost:8080, also an den eigenen Rechner. Es funktioniert nur,
+		wenn der Server dort mit start.sh oder start.bat gestartet wurde.</p>
+	</section>
+	<section>
 		<h2>REST-Service Info</h2>
 		Path Descriptions:<p>
     	- /rest/items - returns all items as JSON-array<br>
@@ -33,6 +39,7 @@
 			Systolic Pressure [mm Hg]: <br><input type="number" id="systolic" name="systolic" value=120><p>
 			Heart Rate [bpm]: <br><input type="number" id="heartRate" name="heartRate" value=60><p>
 			<input type="button" value="Post Vital Data" onclick="postData();"><p>
+			<output id="status"></output>
 		</form>
 	</section>		
 	<footer><h3>ViTAL Project</h3></footer>

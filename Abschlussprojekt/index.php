@@ -37,7 +37,7 @@ session_start();
 		$id = 1;
 
 		if (isset($_POST['suche'])) {
-			$suchstring = $_POST['suche'];
+			$suchstring = is_string($_POST['suche']) ? $_POST['suche'] : '';
 		}
 		?>
 		<table class="table table-striped table-hover">

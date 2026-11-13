@@ -8,55 +8,97 @@ if (!isset($_POST['feedUrl']) || empty($_POST['feedUrl'])) {
     exit;
 }
 
-$feedUrl = $_POST['feedUrl'];
+$feedUrl = is_string($_POST['feedUrl']) ? trim($_POST['feedUrl']) : '';
 
 // Enable error reporting for debugging
 libxml_use_internal_errors(true);
 
-// Try to load the feed with proper headers and SSL handling
-$feedContent = false;
-
-// First, try using cURL (more reliable for HTTPS)
-if (function_exists('curl_init')) {
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $feedUrl);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_MAXREDIRS, 5);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Allow self-signed certificates
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
-    
-    $feedContent = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    $error = curl_error($ch);
-    curl_close($ch);
-    
-    if ($feedContent === false || $httpCode >= 400) {
-        $feedContent = false;
+/**
+ * Checks that a URL uses http or https and that its host resolves only to public IPv4 addresses.
+ * Returns [host, port, ip] or false. The page runs on a public server, so it must not fetch
+ * internal addresses such as 127.0.0.1, the database host or private networks (SSRF).
+ */
+function checkPublicUrl($url) {
+    $parts = parse_url($url);
+    if ($parts === false || !isset($parts['scheme'], $parts['host'])) {
+        return false;
     }
-} 
-
-// Fallback to file_get_contents with proper context
-if ($feedContent === false) {
-    $context = stream_context_create([
-        'http' => [
-            'method' => 'GET',
-            'header' => "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36\r\n",
-            'follow_location' => true,
-            'max_redirects' => 5,
-            'timeout' => 30
-        ],
-        'ssl' => [
-            'verify_peer' => false,
-            'verify_peer_name' => false,
-            'allow_self_signed' => true
-        ]
-    ]);
-    
-    $feedContent = @file_get_contents($feedUrl, false, $context);
+    $scheme = strtolower($parts['scheme']);
+    if (($scheme !== 'http' && $scheme !== 'https') || isset($parts['user']) || isset($parts['pass'])) {
+        return false;
+    }
+    $host = $parts['host'];
+    $port = isset($parts['port']) ? (int)$parts['port'] : ($scheme === 'https' ? 443 : 80);
+    $ips = filter_var($host, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ? [$host] : gethostbynamel($host);
+    if (empty($ips)) {
+        return false;
+    }
+    foreach ($ips as $ip) {
+        $public = filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
+        $cgnat = (ip2long($ip) & 0xFFC00000) === (ip2long('100.64.0.0') & 0xFFC00000);
+        if (!$public || $cgnat) {
+            return false;
+        }
+    }
+    return [$host, $port, $ips[0]];
 }
+
+/**
+ * Fetches a public http(s) URL with cURL. Redirects are followed by hand (at most 5) so that
+ * every target is checked again. Certificates are verified and the body is limited to 5 MB.
+ */
+function fetchFeed($url, &$error) {
+    $maxBytes = 5 * 1024 * 1024;
+    for ($hop = 0; $hop <= 5; $hop++) {
+        $target = checkPublicUrl($url);
+        if ($target === false) {
+            $error = 'Nur öffentliche http- und https-Adressen sind erlaubt.';
+            return false;
+        }
+        list($host, $port, $ip) = $target;
+        $body = '';
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RESOLVE, [$host . ':' . $port . ':' . $ip]); // use the checked address
+        curl_setopt($ch, CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS);
+        curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
+        curl_setopt($ch, CURLOPT_WRITEFUNCTION, function ($ch, $chunk) use (&$body, $maxBytes) {
+            $body .= $chunk;
+            return strlen($body) > $maxBytes ? 0 : strlen($chunk); // returning 0 aborts the transfer
+        });
+        $ok = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $redirect = curl_getinfo($ch, CURLINFO_REDIRECT_URL);
+        $error = curl_error($ch);
+        curl_close($ch);
+
+        if ($ok === false) {
+            return false;
+        }
+        if ($httpCode >= 300 && $httpCode < 400 && !empty($redirect)) {
+            $url = $redirect;
+            continue;
+        }
+        return $httpCode >= 400 ? false : $body;
+    }
+    $error = 'Zu viele Weiterleitungen.';
+    return false;
+}
+
+/**
+ * Only http(s) links from the feed are used in href and src attributes.
+ */
+function safeUrl($url) {
+    $scheme = strtolower((string)parse_url($url, PHP_URL_SCHEME));
+    return ($scheme === 'http' || $scheme === 'https') ? $url : '#';
+}
+
+$error = '';
+$feedContent = function_exists('curl_init') ? fetchFeed($feedUrl, $error) : false;
 
 if ($feedContent === false || empty($feedContent)) {
     echo '<p class="error">❌ Fehler: Der Feed konnte nicht geladen werden.<br>';
@@ -175,7 +217,7 @@ function displayRssFeed($xml) {
         echo '<div class="feed-item">';
         
         if (!empty($imageUrl)) {
-            echo '<img src="' . htmlspecialchars($imageUrl) . '" alt="' . htmlspecialchars($title) . '" class="feed-image">';
+            echo '<img src="' . htmlspecialchars(safeUrl($imageUrl)) . '" alt="' . htmlspecialchars($title) . '" class="feed-image">';
         }
         
         echo '<div class="feed-title">' . htmlspecialchars($title) . '</div>';
@@ -189,7 +231,7 @@ function displayRssFeed($xml) {
             echo '<div class="feed-description">' . htmlspecialchars($cleanDescription) . '</div>';
         }
         
-        echo '<a href="' . htmlspecialchars($link) . '" class="feed-link" target="_blank">📖 Zum Artikel →</a>';
+        echo '<a href="' . htmlspecialchars(safeUrl($link)) . '" class="feed-link" target="_blank">📖 Zum Artikel →</a>';
         echo '<div style="clear: both;"></div>';
         echo '</div>';
         
@@ -276,7 +318,7 @@ function displayAtomFeed($xml) {
             echo '<div class="feed-description">' . htmlspecialchars($cleanDescription) . '</div>';
         }
         
-        echo '<a href="' . htmlspecialchars($link) . '" class="feed-link" target="_blank">📖 Zum Artikel →</a>';
+        echo '<a href="' . htmlspecialchars(safeUrl($link)) . '" class="feed-link" target="_blank">📖 Zum Artikel →</a>';
         echo '</div>';
         
         $count++;

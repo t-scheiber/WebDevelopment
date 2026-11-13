@@ -30,7 +30,9 @@ This seventh exercise adds student registration and login to a MySQL table. It c
 FHTW_uebung_7_scheiber/
 ├── index.php                 # Start page: login form and routing
 ├── register.php              # Registration form and insert
-├── datenbankVerbindung.php   # mysqli connection settings
+├── datenbankVerbindung.php   # mysqli connection
+├── datenbankKonfiguration.php # reads the database settings from outside the repository
+├── sql/studentenliste.sql    # table definition and three demo students
 ├── inc/                      # header (login), navigation, content, footer
 ├── sites/                    # home, studenteninfo, hochschulinfo
 ├── css/footer.css
@@ -51,28 +53,32 @@ FHTW_uebung_7_scheiber/
 - Reading rows for a login check
 
 ### Security notes
-- Registration uses a prepared statement. The login query is built by string concatenation.
-- Passwords are stored as MD5 hashes.
-- Output is not escaped, and `register.php` turns on `display_errors`.
+- Registration and login use prepared statements.
+- Passwords are stored with `password_hash()` and checked with `password_verify()`.
+- Names and email addresses are escaped with `htmlspecialchars()` before output. Database errors show a generic message.
+- The database settings are read from a file outside the web root or from environment variables (see `datenbankKonfiguration.php`). The repository holds no credentials.
+- Registration checks field lengths, the date and the email address. It accepts at most 200 rows and deletes registrations other than the demo rows after 7 days.
 
 ## 🗄️ Database Schema
 
 ### Table `studentenliste`
 
-The table definition is not in the repository. The INSERT in `register.php` names these columns:
+`sql/studentenliste.sql` creates the table and adds three fictional demo students (password `demo1234`, for example `anna.beispiel@example.com`). Columns:
 
-- sid (inserted as NULL)
+- sid (auto increment, inserted as NULL)
 - vorname
 - nachname
 - geburtsdatum
-- emailadresse
-- passwort (MD5 hash)
+- emailadresse (unique)
+- passwort (`password_hash()` output)
+- ist_demo (1 for the demo rows)
+- registriert_am
 
 ## 📋 Features Breakdown
 
 ### Register
 - Form fields: first name, last name, birth date, email address, password.
-- Posts to `register.php`, which redirects to `index.php?registered=erfolgreich` after the insert.
+- Posts to `register.php`, which inserts the row and shows a success message with a link to the login.
 
 ### Log in
 - Form fields: email address (`user`) and password (`pwd`) on the start page.

@@ -48,7 +48,7 @@
 		}
 		else
 		{
-			echo "<div class='login'>Willkommen, ", $_COOKIE['user'], "! <a class='logoutLink' href='logout.php'>Logout</a></div>";
+			echo "<div class='login'>Willkommen, ", htmlspecialchars((string)$_COOKIE['user'], ENT_QUOTES, 'UTF-8'), "! <a class='logoutLink' href='logout.php'>Logout</a></div>";
 		}
 	}
 ?>

@@ -16,16 +16,22 @@
 	</head>
 	<body>
 		<?php
-			$vorname=$_GET['vn'];
-			$nachname=$_GET['nn'];
-			$email=$_GET['email'];
-			$svn=$_GET['svn'];
-			$gebdat=$_GET['gebdat'];
-			$geschlecht=$_GET['geschlecht'];
-			$diastolbd=$_GET['diabd'];
-			$systolbd=$_GET['sysbd'];
-			$puls=$_GET['puls'];
-			$anmerkungen=$_GET['anmerkungen'];
+			// Escape every submitted value before it is printed (prevents reflected XSS).
+			function feld($name)
+			{
+				$wert = $_GET[$name] ?? '';
+				return is_string($wert) ? htmlspecialchars($wert, ENT_QUOTES, 'UTF-8') : '';
+			}
+			$vorname=feld('vn');
+			$nachname=feld('nn');
+			$email=feld('email');
+			$svn=feld('svn');
+			$gebdat=feld('gebdat');
+			$geschlecht=feld('geschlecht');
+			$diastolbd=feld('diabd');
+			$systolbd=feld('sysbd');
+			$puls=feld('puls');
+			$anmerkungen=feld('anmerkungen');
 		?>
 		
 		<table border="1">
@@ -71,7 +77,7 @@
 				<?php
 					if (!empty($email))
 					{
-						echo "<td>", $nachname, "</td>";
+						echo "<td>", $email, "</td>";
 					}
 					else
 					{
@@ -174,7 +180,9 @@
 		<div>
 			<?php
 
-				echo var_dump($_GET);
+				ob_start();
+				var_dump($_GET);
+				echo "<pre>", htmlspecialchars(ob_get_clean(), ENT_QUOTES, 'UTF-8'), "</pre>";
 
 			?>
 		</div>
