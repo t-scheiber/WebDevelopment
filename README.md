@@ -4,6 +4,15 @@ University course exercises from the Web Development course at FH Technikum Wien
 
 The repository has no package manifest, so there is no install, build, lint or test command. Exercises 1 and 2 are plain files that open in a browser. The other folders need a PHP web server (see [Running the exercises](#running-the-exercises)).
 
+## Live pages
+
+The two static exercises are online:
+
+- Exercise 1: https://fhtw-uebung1.thomasscheiber.com
+- Exercise 2: https://fhtw-uebung2.thomasscheiber.com
+
+The PHP exercises are not hosted. They are course work from 2020 with fixed logins, a URL fetcher without certificate checks and SQL built from form input, so they should only run on a local machine.
+
 ## Exercises
 
 ### FHTW_uebung_1_scheiber (exercise 1)
